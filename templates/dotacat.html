@@ -2,12 +2,7 @@
 
 
 {%block content%}
-
-
-
 {%for art in articles%}
-
-    {{art.category}}
 
     {{art.author}}
 <a href="{%url 'full-article' art.id%}"> {{art.title}} </a>

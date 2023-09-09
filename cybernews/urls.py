@@ -23,5 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.show_recent_article, name='main-page'),
     path('detail/<int:id>', views.article_detail, name='full-article'),
+    path('<slug:slug>/', views.show_only_category, name = 'category-only'),
+
 
 ]
