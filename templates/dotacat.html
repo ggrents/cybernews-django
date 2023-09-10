@@ -5,7 +5,7 @@
 {%for art in articles%}
 
     {{art.author}}
-<a href="{%url 'full-article' art.id%}"> {{art.title}} </a>
+<a href="{{art.get_absolute_url}}"> {{art.title}} </a>
     {{art.image}}
 
 <br>
