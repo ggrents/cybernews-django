@@ -45,13 +45,14 @@ class Article(models.Model):
 
 
 class Comment(models.Model) :
+    author = models.ForeignKey(User, related_name="commentator", on_delete=models.CASCADE, blank=True, null=True)
     article = models.ForeignKey(Article, related_name='article', on_delete=models.CASCADE)
     name = models.CharField(max_length=155)
     text = models.TextField(max_length=1000)
 
 
     def __str__(self):
-        return f'{self.name} написал {self.text}'
+        return f'{self.author} : \n {self.text}'
 
 
 

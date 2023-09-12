@@ -54,6 +54,7 @@ def article_detail(request, id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.article = Article.objects.get(pk=id)
+            comment.author = request.user
             comment.save()
             print("Комментарий добавлен!")
             return redirect('full-article', id=art.pk)
