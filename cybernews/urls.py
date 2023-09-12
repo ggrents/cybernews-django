@@ -28,7 +28,10 @@ urlpatterns = [
     path('detail/<int:id>', views.article_detail, name='full-article'),
     path('onlycat/<slug:slug>/', views.show_only_category, name = 'category-only'),
     path('addart/', views.addart, name = 'addart'),
-   # path('forum/', views.forum_main, name = 'forum_main')
+    path('signup/', views.SignUpView.as_view(), name = 'signup'),
+    path('signin/', views.SignInView.as_view(), name = 'signin'),
+    path('logout/', views.Logout.as_view(), name = 'logout'),
+    path('forum/',  include('forum.urls'))
 ]
 
 if settings.DEBUG:

@@ -23,7 +23,7 @@ class Article(models.Model):
     title = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, null=True)
     text = models.TextField(max_length=3000)
-    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/')
     created = models.DateTimeField(auto_now_add=True, null=True)
     category = models.ForeignKey(to=Category, related_name='category', on_delete=models.CASCADE)
 
@@ -42,4 +42,16 @@ class Article(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
+
+
+class Comment(models.Model) :
+    article = models.ForeignKey(Article, related_name='article', on_delete=models.CASCADE)
+    name = models.CharField(max_length=155)
+    text = models.TextField(max_length=1000)
+
+
+    def __str__(self):
+        return f'{self.name} написал {self.text}'
+
+
 

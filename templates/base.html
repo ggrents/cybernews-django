@@ -1,33 +1,41 @@
-<!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
+     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <meta charset="UTF-8">
     <title>CyberNews</title>
 </head>
 <body>
-<h1>Cyber News</h1>
+<footer>
+<h1>
+    <a href="{%url 'main-page'%}">Cyber News </a> </h1>
 <h2>Все о киберспорте в одном месте</h2>
 
+{%if user.is_authenticated%}
+        <ul>
 
+   <li>  <a href="{%url 'addart'%}"> Добавить статью</a> </li>
+            <li><a href="logout">Выйти</a> </li>
+            </ul>
+
+    {%else%}
+                <ul>
+                    <li><a href="{%url 'signup'%}"> РЕГИСТРАЦИЯ</a></li>
+        <li><a href="{%url 'signin'%}"> ВОЙТИ</a></li>
+                </ul>
+
+
+            {%endif%}
+
+
+
+
+
+</footer>
 <!--ЗДЕСЬ БУДЕТ ШАПКА ПЕРМАНЕНТНО-->
 
-
-<h1>
-    <a href="addart/"> Добавить статью</a></h1>
-
-
-<h1><a href="forum/"></a>
-    ФОРУМ
-    </h1>
-
-
-<h1>CATEGORIES</h1>
-{%for cat in cats%}
-
-<a href="{%url 'category-only' cat.slug%}">{{cat}} </a>
-
-
-{%endfor%}
 
 <br>
 {%block content%}

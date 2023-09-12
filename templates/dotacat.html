@@ -1,12 +1,32 @@
 {%extends "base.html" %}
-
+{%load static%}
 
 {%block content%}
+
+
+<h1>
+CATEGORIES </h1>
+
+{%for cat in cats%}
+
+<a href="{%url 'category-only' cat.slug%}">{{cat}} </a>
+
+{%endfor%}
+
+<br>
+<br>
+<br>
+<br>
+
+<div class = "arts_by_cat">
+
 {%for art in articles%}
 
-    {{art.author}}
-<a href="{{art.get_absolute_url}}"> {{art.title}} </a>
-    {{art.image}}
+
+<h1> <a href="{{art.get_absolute_url}}"> {{art.title}} </a>  </h1>
+
+<img src="{{art.image.url}}" >
+</div>
 
 <br>
 

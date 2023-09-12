@@ -1,5 +1,5 @@
 {%extends "base.html"%}
-
+{%load static%}
 
 
 
@@ -8,13 +8,34 @@
 
 <body>
 {%block content%}
-{{art.title}}
+<h1>{{art.title}} </h1>
 <br>
 <br>
-{{art.text}}
+<p> {{art.text}} </p>
 <br>
 <br>
-{{art.image}}
+<img src="{{art.image.url}}"  >
+
+<br>
+<br>
+<br>
+<div class="comform"></div>
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+
+    <button type="submit"> Отправить </button>
+
+</form>
+
+{%for comm in comments%}
+
+{{comm}}
+<br>
+
+{%endfor%}
+
+
 {%endblock%}
 
 </body>
