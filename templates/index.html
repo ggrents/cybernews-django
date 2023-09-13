@@ -1,6 +1,7 @@
 
 {%extends "base.html" %}
 {% load static %}
+{% load news_tags %}
 
 
 
@@ -13,6 +14,7 @@
 <h1>
 CATEGORIES </h1>
 
+{%getcats as cats%}
 {%for cat in cats%}
 
 <a href="{%url 'category-only' cat.slug%}">{{cat}} </a>
@@ -30,11 +32,13 @@ CATEGORIES </h1>
     <img src="{{art.image.url}}"  >
 
 <br>
-
+    {%for tag in art.tags.all%}
+    <a href="{%url 'tag_search' tag.name%}"> {{tag.name}} | </a>
+    {%endfor%}
 {%endfor%}
     </div>
 
 
-
+{%include 'paginator.html' with page=page_obj%}
 
 {%endblock%}

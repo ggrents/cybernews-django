@@ -1,11 +1,6 @@
 {%extends "base.html"%}
 {%load static%}
 
-
-
-
-
-
 <body>
 {%block content%}
 <h1>{{art.title}} </h1>
@@ -19,6 +14,17 @@
 <br>
 <br>
 <br>
+
+<h2>SIMILAR ARTICLES</h2>
+
+{%for art in similar%}
+
+<a href="{%url 'full-article' art.id%}"> {{art.title}}</a>
+<br>
+
+{%endfor%}
+
+
 <div class="comform"></div>
 <form method="post">
     {%csrf_token%}

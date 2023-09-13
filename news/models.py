@@ -3,6 +3,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
+from taggit.managers import TaggableManager
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -22,6 +24,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, related_name="author", on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, null=True)
+    tags = TaggableManager()
     text = models.TextField(max_length=3000)
     image = models.ImageField(upload_to='uploads/')
     created = models.DateTimeField(auto_now_add=True, null=True)

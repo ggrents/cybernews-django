@@ -2,22 +2,23 @@
 
 <html lang="en">
 <head>
-     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+     <link rel="stylesheet" type="text/css" href="{% static 'css/main_style.css' %}">
     <meta charset="UTF-8">
     <title>CyberNews</title>
 </head>
 <body>
-<footer>
-<h1>
-    <a href="{%url 'main-page'%}">Cyber News </a> </h1>
-<h2>Все о киберспорте в одном месте</h2>
-
+<header>
+    <div class="ebhed">
+  <div class="header-left">
+        <h1 class="header-heading"><a href="{% url 'main-page' %}">CYBER NEWS</a></h1>
+        <h2>Все о киберспорте в одном месте</h2>
+    </div>
 {%if user.is_authenticated%}
         <ul>
 
    <li>  <a href="{%url 'addart'%}"> Добавить статью</a> </li>
-            <li><a href="logout">Выйти</a> </li>
+            <li><a href="{%url 'logout'%}">Выйти</a> </li>
             </ul>
 
     {%else%}
@@ -28,12 +29,12 @@
 
 
             {%endif%}
+</div>
 
 
 
 
-
-</footer>
+</header>
 <!--ЗДЕСЬ БУДЕТ ШАПКА ПЕРМАНЕНТНО-->
 
 

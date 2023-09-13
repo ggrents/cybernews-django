@@ -8,15 +8,32 @@ from django.views import View
 from django.views.generic import ListView, FormView
 from news.models import *
 from django.core.paginator import Paginator
+from taggit.models import Tag
 
 from .forms import *
 
 
 class show_article(ListView):
     queryset = Article.objects.all()
-    context_object_name = 'arts'
     template_name = 'index.html'
-    paginate_by = 1
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Добавьте вашу вторую ссылку в контекст
+        context['cats'] = Category.objects.all()
+        context['arts'] = Article.objects.all()
+        return context
+
+
+def show_article_byTags(request, tag):
+    try:
+        tag = Tag.objects.get(name=tag)
+        arts =  Article.objects.filter(tags=tag)
+    except Tag.DoesNotExist:
+        arts = Article.objects.none()
+    cats = Category.objects.all()
+    return render(request, 'index.html', {'arts': arts, 'cats': cats})
 
 
 def addart(request):
@@ -36,6 +53,7 @@ def addart(request):
 def show_recent_article(request):
     arts = Article.objects.order_by('-created')[:3]
     cats = Category.objects.all()
+
     return render(request, 'index.html', {'arts': arts, 'cats': cats})
 
 
@@ -49,6 +67,9 @@ def show_only_category(request, slug):
 def article_detail(request, id):
     art = get_object_or_404(Article, pk=id)
     comments = Comment.objects.filter(article=art)
+    tags = art.tags.all()
+    similar_arts = Article.objects.filter(tags__in=tags).exclude(id=art.id).distinct()
+    print()
     if request.method == "POST":
         form = AddComment(request.POST)
         if form.is_valid():
@@ -60,12 +81,13 @@ def article_detail(request, id):
             return redirect('full-article', id=art.pk)
     else:
         form = AddComment()
-    return render(request, 'detail.html', {'art': art, 'form': form, 'comments': comments})
+    return render(request, 'detail.html', {'art': art, 'form': form, 'comments': comments, 'similar' : similar_arts})
 
 
 class SignUpView(View):
     form = CreateUser
     template_name = 'register.html'
+
     def get(self, request):
         return render(request, self.template_name, {'form': self.form})
 
