@@ -16,9 +16,11 @@
     </div>
 {%if user.is_authenticated%}
         <ul>
-
+         <li><a href="{%url 'profile'%}"> Профиль </a></li>
    <li>  <a href="{%url 'addart'%}"> Добавить статью</a> </li>
             <li><a href="{%url 'logout'%}">Выйти</a> </li>
+            <li><a href="{%url 'change-password'%}"> Сменить пароль </a></li>
+
             </ul>
 
     {%else%}

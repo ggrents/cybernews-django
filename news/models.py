@@ -59,3 +59,5 @@ class Comment(models.Model) :
     def __str__(self):
         return f'{self.author} : \n {self.text}'
 
+    def get_absolute_url(self):
+        return reverse('full-article', args=[str(self.article.id)])

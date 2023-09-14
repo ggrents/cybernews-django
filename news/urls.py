@@ -16,6 +16,10 @@ urlpatterns = [
     path('signup/', views.SignUpView.as_view(), name='signup'),
     path('signin/', views.SignInView.as_view(), name='signin'),
     path('logout/', views.Logout.as_view(), name='logout'),
+    path('pass-change/', views.PasswordChange.as_view(), name = 'change-password'),
+
+    path('profile/', views.UserProfile.as_view(), name = 'profile'),
+
 
     path('tagsearch/<str:tag>/', views.show_article_byTags, name = 'tag_search'),
     path('search/', views.Search.as_view(), name = 'search')

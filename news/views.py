@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.db.models import Q
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -25,7 +26,6 @@ class show_article(ListView):
 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
-
 
 def show_article_byTags(request, tag):
     try:
@@ -123,9 +123,24 @@ class SignInView(View):
         else:
             return redirect('signin')
 
+class UserProfile(View) :
+    def get(self, request):
+        arts = Article.objects.filter(author = request.user)
+        comms = Comment.objects.filter(author = request.user)
+
+        return render(request, 'profile.html', {'arts' : arts, 'comms' : comms} )
+
+
+
 
 class Logout(LogoutView):
     next_page = 'main-page'
+
+
+class PasswordChange(PasswordChangeView) :
+    success_url = reverse_lazy("main-page")
+    template_name = "password_change_form.html"
+
 
 
 class Search(View):
