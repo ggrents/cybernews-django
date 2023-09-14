@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -52,10 +52,10 @@ class Comment(models.Model) :
     article = models.ForeignKey(Article, related_name='article', on_delete=models.CASCADE)
     name = models.CharField(max_length=155)
     text = models.TextField(max_length=1000)
-
+    class Meta :
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
 
     def __str__(self):
         return f'{self.author} : \n {self.text}'
-
-
 

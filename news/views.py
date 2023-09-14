@@ -4,7 +4,10 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+
 from django.views import View
+from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, FormView
 from news.models import *
 from django.core.paginator import Paginator
@@ -16,20 +19,17 @@ from .forms import *
 class show_article(ListView):
     queryset = Article.objects.all()
     template_name = 'index.html'
+    context_object_name = 'arts'
     paginate_by = 3
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # Добавьте вашу вторую ссылку в контекст
-        context['cats'] = Category.objects.all()
-        context['arts'] = Article.objects.all()
-        return context
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 
 def show_article_byTags(request, tag):
     try:
         tag = Tag.objects.get(name=tag)
-        arts =  Article.objects.filter(tags=tag)
+        arts = Article.objects.filter(tags=tag)
     except Tag.DoesNotExist:
         arts = Article.objects.none()
     cats = Category.objects.all()
@@ -42,7 +42,9 @@ def addart(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
+
             article.save()
+            article.tags.set(form.cleaned_data['tags'])
             return redirect('main-page')
     else:
         form = AddArticle()
@@ -71,6 +73,9 @@ def article_detail(request, id):
     similar_arts = Article.objects.filter(tags__in=tags).exclude(id=art.id).distinct()
     print()
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            return redirect('signin')
+
         form = AddComment(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -81,7 +86,7 @@ def article_detail(request, id):
             return redirect('full-article', id=art.pk)
     else:
         form = AddComment()
-    return render(request, 'detail.html', {'art': art, 'form': form, 'comments': comments, 'similar' : similar_arts})
+    return render(request, 'detail.html', {'art': art, 'form': form, 'comments': comments, 'similar': similar_arts})
 
 
 class SignUpView(View):
