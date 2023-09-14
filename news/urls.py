@@ -17,7 +17,8 @@ urlpatterns = [
     path('signin/', views.SignInView.as_view(), name='signin'),
     path('logout/', views.Logout.as_view(), name='logout'),
 
-    path('tagsearch/<str:tag>/', views.show_article_byTags, name = 'tag_search')
+    path('tagsearch/<str:tag>/', views.show_article_byTags, name = 'tag_search'),
+    path('search/', views.Search.as_view(), name = 'search')
 
 
 ]

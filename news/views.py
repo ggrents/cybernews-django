@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
+from django.db.models import Q
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -8,7 +9,7 @@ from django.utils.decorators import method_decorator
 
 from django.views import View
 from django.views.decorators.cache import cache_page
-from django.views.generic import ListView, FormView
+from django.views.generic import ListView, FormView, CreateView
 from news.models import *
 from django.core.paginator import Paginator
 from taggit.models import Tag
@@ -125,3 +126,20 @@ class SignInView(View):
 
 class Logout(LogoutView):
     next_page = 'main-page'
+
+
+class Search(View):
+    def get(self, request):
+        form = SearchForm()
+        arts = []
+        return render(request, 'search.html', {'form': form, 'arts': arts})
+
+    def post(self, request):
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            arts = Article.objects.filter(Q(title__icontains=query) | Q(text__icontains=query))
+        else:
+            arts = []
+
+        return render(request, 'search.html', {'form': form, 'arts': arts})

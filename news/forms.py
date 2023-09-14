@@ -13,6 +13,10 @@ class AddArticle(forms.ModelForm):
         fields = ['title', 'tags', 'text', 'image', 'category']
 
 
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Поиск', max_length=100)
+
+
 class AddComment(forms.ModelForm):
     class Meta:
         model = Comment
