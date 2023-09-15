@@ -10,9 +10,9 @@
 
 
 {%block content%}
-
+<div class="cats">
 <h1>
-CATEGORIES </h1>
+Категории </h1>
 
 {%getcats as cats%}
 {%for cat in cats%}
@@ -20,8 +20,12 @@ CATEGORIES </h1>
 <a href="{%url 'category-only' cat.slug%}">{{cat}} </a>
 <br>
 {%endfor%}
+    </div>
 
-<a href="{%url 'search' %}"> ПОИСК </a>
+<br>
+<br>
+<br>
+<a href="{%url 'search' %}"> Поиск </a>
 
 
 <div class="recent">

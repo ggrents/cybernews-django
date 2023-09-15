@@ -1,0 +1,26 @@
+html {
+background-color : black;
+color : white;
+}
+
+.recent {
+
+    width: 50%; /* Ширина вашего дива */
+    height: 50%; /* Высота вашего дива */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+a {
+    color: red;
+}
+img {
+height : 400px;
+width : 600px;
+}
+
+.header-center {
+text-align : center;
+}

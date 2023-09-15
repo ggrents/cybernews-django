@@ -1,13 +1,6 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.db.models import Q
-from django.http import Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, FormView, CreateView
@@ -26,6 +19,7 @@ class show_article(ListView):
 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
+
 
 def show_article_byTags(request, tag):
     try:
@@ -90,57 +84,12 @@ def article_detail(request, id):
     return render(request, 'detail.html', {'art': art, 'form': form, 'comments': comments, 'similar': similar_arts})
 
 
-class SignUpView(View):
-    form = CreateUser
-    template_name = 'register.html'
-
+class UserProfile(View):
     def get(self, request):
-        return render(request, self.template_name, {'form': self.form})
+        arts = Article.objects.filter(author=request.user)
+        comms = Comment.objects.filter(author=request.user)
 
-    def post(self, request):
-        form = self.form(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('main-page')
-        return render(request, self.template_name, {'form': form})
-
-
-class SignInView(View):
-    template_name = 'login.html'
-
-    def get(self, request):
-        form = AuthenticationForm()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        usname = request.POST['username']
-        passw = request.POST['password']
-        user = authenticate(request, username=usname, password=passw)
-        if user is not None:
-            login(request, user)
-            return redirect('main-page')
-        else:
-            return redirect('signin')
-
-class UserProfile(View) :
-    def get(self, request):
-        arts = Article.objects.filter(author = request.user)
-        comms = Comment.objects.filter(author = request.user)
-
-        return render(request, 'profile.html', {'arts' : arts, 'comms' : comms} )
-
-
-
-
-class Logout(LogoutView):
-    next_page = 'main-page'
-
-
-class PasswordChange(PasswordChangeView) :
-    success_url = reverse_lazy("main-page")
-    template_name = "password_change_form.html"
-
+        return render(request, 'profile.html', {'arts': arts, 'comms': comms})
 
 
 class Search(View):
