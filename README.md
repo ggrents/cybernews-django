@@ -74,9 +74,12 @@ In this section you can get acquainted with several examples of using the functi
 
 You can contact me for support, feedback and more information :
 
-Telegram: @garnets
+Telegram: @gggrents 
+
 Mail: pip_install_gggrents@mail.ru
+
 Instagram: @gggrents
+
 LinkedIn: www.linkedin.com/in/gggrents
 
 Do not hesitate to contact me with questions, suggestions and feedback. I am always ready to help and discuss any issues related to my project.
