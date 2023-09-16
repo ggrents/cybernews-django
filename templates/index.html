@@ -20,29 +20,30 @@
 <a href="{%url 'category-only' cat.slug%}">{{cat}} </a>
 <br>
 {%endfor%}
+    <a href="{%url 'search' %}"> Поиск </a>
     </div>
 
 <br>
 <br>
 <br>
-<a href="{%url 'search' %}"> Поиск </a>
 
 
-<div class="recent">
 
-{%for art in arts%}
+    <div class="recent">
+        {% for art in arts %}
+            <div class="recent-item">
+               <div class="cat">  <h2>Категория -  {{ art.category }} </h2> </div>
 
-   <h5> {{art.category}}</h5>
-
-
-<p><a href="{%url 'full-article' art.id%}"> {{art.title}} </a>  </p>
-    <img src="{{art.image.url}}"  >
-
-<br>
-    {%for tag in art.tags.all%}
-    <a href="{%url 'tag_search' tag.name%}"> {{tag.name}} | </a>
-    {%endfor%}
-{%endfor%}
+            <div class="tit">    <h3><a href="{% url 'full-article' art.id %}">{{ art.title }}</a></h3> </div>
+                <img src="{{ art.image.url }}">
+                <br>
+                <div class="tagg">
+                {% for tag in art.tags.all %}
+                    <a href="{% url 'tag_search' tag.name %}" class="tag-link">{{ tag.name }} | </a>
+                {% endfor %}
+                    </div>
+            </div>
+        {% endfor %}
     </div>
 
 

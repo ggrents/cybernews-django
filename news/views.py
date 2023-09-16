@@ -58,7 +58,7 @@ def show_only_category(request, slug):
     cats = Category.objects.all()
     chosen_category = Category.objects.get(slug=slug)
     arts = Article.objects.filter(category=chosen_category)
-    return render(request, 'dotacat.html', {'articles': arts, 'cats': cats})
+    return render(request, 'index.html', {'arts': arts})
 
 
 def article_detail(request, id):
@@ -106,4 +106,4 @@ class Search(View):
         else:
             arts = []
 
-        return render(request, 'search.html', {'form': form, 'arts': arts})
+        return render(request, 'index.html', {'arts': arts})

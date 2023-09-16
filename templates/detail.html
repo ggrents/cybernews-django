@@ -2,20 +2,20 @@
 {%load static%}
 
 <body>
+
+
 {%block content%}
-<h1>{{art.title}} </h1>
-<br>
-<br>
-<p> {{art.text}} </p>
-<br>
-<br>
-<img src="{{art.image.url}}"  >
+    <div class="artic_det">
+        <h2>{{art.title}}</h2>
+        <div class="article-content">
+            <p>{{art.text}}</p>
+            <img src="{{art.image.url}}" id="det-img">
+        </div>
+    </div>
 
-<br>
-<br>
-<br>
+<div class="sim">
 
-<h2>SIMILAR ARTICLES</h2>
+<h2>ПОХОЖИЕ СТАТЬИ</h2>
 
 {%for art in similar%}
 
@@ -24,15 +24,23 @@
 
 {%endfor%}
 
+    </div>
 
-<div class="comform"></div>
-<form method="post">
-    {%csrf_token%}
-    {{form.as_p}}
 
-    <button type="submit"> Отправить </button>
-
-</form>
+<div class="comform">
+    <h2>      Оставьте комментарий</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="aaa">
+        {% for field in form %}
+        <div>
+            Введите комментарий
+            <div class="inpcom" >{{field}}</div>
+        </div>
+        {% endfor %}
+        </div>
+        <input type="submit" value="Отправить" >
+    </form>
 
 {%for comm in comments%}
 
@@ -41,6 +49,7 @@
 
 {%endfor%}
 
+    </div>
 
 {%endblock%}
 

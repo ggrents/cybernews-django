@@ -1,31 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cyber News</title>
-</head>
-<body>
 
-<form action="" method="post">
-  {%csrf_token%}
-  {{form.as_p}}
-  <button type="submit">Искать</button>
-</form>
-
-{%for art in arts%}
-
-   <h5> {{art.category}}</h5>
+{%extends "base.html" %}
+{% load static %}
+{% load news_tags %}
 
 
-<p><a href="{%url 'full-article' art.id%}"> {{art.title}} </a>  </p>
-    <img src="{{art.image.url}}"  >
 
-<br>
-    {%for tag in art.tags.all%}
-    <a href="{%url 'tag_search' tag.name%}"> {{tag.name}} | </a>
-    {%endfor%}
 
-{%endfor%}
 
-</body>
-</html>
+
+
+{%block content%}
+<div class="comform2">
+    <h2>Поиск по ключевым словам</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="aaa">
+        {% for field in form %}
+        <div>
+
+            <div class="inpcom" >{{field}}</div>
+        </div>
+        {% endfor %}
+        </div>
+        <input type="submit" value="Поиск" >
+    </form>
+
+</div>
+{%endblock%}

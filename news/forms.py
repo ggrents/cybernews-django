@@ -8,6 +8,7 @@ from .models import *
 
 class AddArticle(forms.ModelForm):
     captcha = CaptchaField()
+
     class Meta:
         model = Article
         fields = ['title', 'tags', 'text', 'image', 'category']
@@ -18,6 +19,7 @@ class SearchForm(forms.Form):
 
 
 class AddComment(forms.ModelForm):
+    text = forms.CharField(widget=forms.TextInput(attrs={'size': '30', 'style': 'height: 40px;'}))
     class Meta:
         model = Comment
         fields = "__all__"

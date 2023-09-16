@@ -120,3 +120,7 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cybernews_cache'),
     }
 }
+
+CAPTCHA_IMAGE_SIZE= 200,200
+
+CAPTCHA_FONT_SIZE = 22

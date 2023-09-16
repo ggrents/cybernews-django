@@ -3,19 +3,60 @@ background-color : black;
 color : white;
 }
 
-.recent {
+body {
 
-    width: 50%; /* Ширина вашего дива */
-    height: 50%; /* Высота вашего дива */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+font-family: 'Play', sans-serif;
 }
-
 a {
-    color: red;
+    color: #41FAF4;
+    text-decoration: none;
 }
+
+.usertools {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #040022;
+}
+
+.usertools ul {
+
+    list-style: none;
+    padding: 5px;
+    padding-left: 35px;
+    margin : 0;
+    background-color : #040022;
+}
+
+.usertools ul li {
+    display: block;
+    padding: 5px;
+    background-color : #040022;
+}
+
+
+.usertools ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.header {
+    width: 100%;
+    height: 16%;
+     position: fixed; /* Используйте fixed, чтобы элемент прикреплялся к верхнему краю */
+    top: 0; /* Установите верхний край элемента на верхнем крае окна */
+    left: 0; /* Установите левый край элемента на левом крае окна */
+    background-color : #040022;
+    font-family: 'Play', sans-serif;
+    margin-bottom : 0;
+}
+
+.tag-link {
+    color: white; /* Здесь укажите желаемый цвет, например, красный (#FF0000) */
+    /* Дополнительные стили, если необходимо */
+}
+
+
 img {
 height : 400px;
 width : 600px;
@@ -23,4 +64,210 @@ width : 600px;
 
 .header-center {
 text-align : center;
+}
+
+.cats {
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    background-color: trasparent; /* Цвет фона блока с категориями */
+    padding: 20px;
+    }
+
+
+.footer {
+
+    background-color: #040022; /* Цвет фона футера (обычно темный) */
+    color: #fff; /* Цвет текста в футере (обычно белый) */
+    padding: 20px; /* Отступы вокруг текста внутри футера */
+    text-align: center; /* Выравнивание текста по центру */
+    position: fixed
+    left : 0;
+    margin : 0;
+    bottom : 0;
+
+}
+
+.artic_det {
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    margin: 120px auto 10px; /* 20px отступ сверху, авто по горизонтали, 0 снизу */
+    padding: 20px;
+     padding-top : 0px;/* Отступы вокруг контейнера */
+    border: 2px solid gray;
+    background-color : #040022;
+    height : auto;
+
+}
+
+.artic_det h2 {
+    font-size: 36px; /* Увеличение размера текста заголовка */
+    font-weight: bold;
+    margin-top : 70px;
+    margin-bottom: 20px; /* Отступ снизу для названия */
+    /* Удаление рамки */
+    color : #41FAF4;
+}
+
+.article-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.article-content p {
+    flex: 1;
+    margin-right: 20px; /* Отступ между текстом и изображением */
+    font-size: 15px; /* Уменьшение размера текста статьи */
+    line-height: 1.5; /* Уменьшение высоты строки текста */
+}
+
+#det-img {
+    max-width: 100%; /* Увеличение размера изображения по ширине */
+    height: auto; /* Автоматическое масштабирование высоты изображения */
+
+    align-self: flex-start;
+}
+
+
+
+
+.recent {
+
+align-items : center;
+
+
+}
+
+/* Стили для блока с категориями и элементами */
+.recent {
+    margin-top : 60px;
+    text-align: center;
+    margin-right : 250px; /* Выравниваем элементы по центру экрана */
+    margin-left : 100px;
+
+
+}
+
+.tit {
+
+padding : 0px;
+
+}
+
+.cat {
+margin : 5px;
+}
+
+.recent-item {
+border: 2px solid gray;
+margin : 20px;
+background-color : #040022;
+}
+
+.recent-item h5 {
+    position : relative;
+    float: center;
+    left : 15%;
+    top : 100px;
+    margin-top : 10px;
+    margin-right : 10px;
+    font-size : 20px;
+
+}
+
+.recent-item p {
+    text-align : center;
+    font-size : 27px;
+
+}
+.tagg {
+
+align-items : center;
+
+}
+
+.sim {
+max-width : 800px;
+padding : 5px;
+
+text-align: center;
+margin-left : 320px;
+}
+
+.comform {
+
+margin : 30px;
+}
+
+.comform h2 {
+margin-left : 1px;
+}
+
+.id_text {
+
+cols = 3;
+
+}
+
+
+.inpcom {
+
+max-width : 100%;
+margin-bottom : 4px;
+margin-top : 4px;
+
+}
+
+
+.comform2 {
+
+text-align : center;
+
+margin-top : 280px;
+margin-bottom : 320px;
+}
+
+.formAdd {
+
+margin : 200px;
+text-align : center;
+margin-bottom : 300px;
+
+}
+
+.pagination {
+
+text-align : center;
+margin-right : 20px;
+margin-bottom : 20px;
+}
+
+.userinfo {
+text-align : center;
+margin-top  : 140px;
+margin-bottom  :80px;
+}
+
+.usArts {
+
+margin-left : 200px;
+
+}
+
+.usArts ul {
+
+ list-style-type: none;
+}
+
+.usComs {
+
+margin-left : 1000px;
+margin-bottom : 300px;
+margin-top : -150px;
+
+}
+
+.usComs ul {
+
+ list-style-type: none;
 }
