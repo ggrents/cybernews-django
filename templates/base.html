@@ -3,18 +3,20 @@
 <html lang="en">
 <head>
 
-     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=IBM+Plex+Mono&display=swap"
+          rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=IBM+Plex+Mono&family=Play&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=IBM+Plex+Mono&family=Play&display=swap"
+          rel="stylesheet">
 
     <title>CyberNews</title>
 
@@ -23,35 +25,34 @@
 <body>
 <div class="header">
 
-  <div class="header-center">
+    <div class="header-center">
         <h1 class="header-heading"><a href="{% url 'main-page' %}">CYBER NEWS</a></h1>
         <h2>Все о киберспорте в одном месте</h2>
     </div>
 
-{%if user.is_authenticated%}
+    {%if user.is_authenticated%}
 
-<div class="usertools">
+    <div class="usertools">
         <ul>
-         <li><a href="{%url 'profile'%}"> Профиль </a></li>
-   <li>  <a href="{%url 'addart'%}"> Добавить статью</a> </li>
-            <li><a href="{%url 'logout'%}">Выйти</a> </li>
+            <li><a href="{%url 'profile'%}"> Профиль </a></li>
+            <li><a href="{%url 'addart'%}"> Добавить статью</a></li>
+            <li><a href="{%url 'logout'%}">Выйти</a></li>
             <li><a href="{%url 'change-password'%}"> Сменить пароль </a></li>
 
-            </ul>
-</div>
+        </ul>
+    </div>
     {%else%}
-<div class="usertools">
-                <ul>
-                    <li><a href="{%url 'signup'%}"> РЕГИСТРАЦИЯ</a></li>
-        <li><a href="{%url 'signin'%}"> ВОЙТИ</a></li>
-                </ul>
+    <div class="usertools">
+        <ul>
+            <li><a href="{%url 'signup'%}"> РЕГИСТРАЦИЯ</a></li>
+            <li><a href="{%url 'signin'%}"> ВОЙТИ</a></li>
+        </ul>
+
+    </div>
+    {%endif%}
+
 
 </div>
-            {%endif%}
-
-
-</div>
-
 
 
 <!--ЗДЕСЬ БУДЕТ ШАПКА ПЕРМАНЕНТНО-->
@@ -61,14 +62,13 @@
 {%block content%}
 
 
-
 {%endblock%}
 <!--справа все предыдущие статьи и кнопка категории которую пользователь выбирает-->
 
 
 <footer class="footer">
-        &copy; 2023 Все права защищены.
-    </footer>
+    &copy; 2023 Все права защищены.
+</footer>
 
 
 <!--футер тоже перманентно не меняется-->

@@ -1,12 +1,6 @@
-
 {%extends "base.html" %}
 {% load static %}
 {% load news_tags %}
-
-
-
-
-
 
 
 {%block content%}
@@ -15,14 +9,14 @@
     <form method="POST">
         {% csrf_token %}
         <div class="aaa">
-        {% for field in form %}
-        <div>
+            {% for field in form %}
+            <div>
 
-            <div class="inpcom" >{{field}}</div>
+                <div class="inpcom">{{field}}</div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-        </div>
-        <input type="submit" value="Поиск" >
+        <input type="submit" value="Поиск">
     </form>
 
 </div>

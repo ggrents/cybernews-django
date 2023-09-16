@@ -7,8 +7,8 @@ from .models import *
 
 
 class AddArticle(forms.ModelForm):
-
     title = forms.CharField(label='Заголовок', max_length=100)
+
     class Meta:
         model = Article
         fields = ['title', 'tags', 'text', 'image', 'category']
@@ -22,14 +22,16 @@ class SearchForm(forms.Form):
 
 class AddComment(forms.ModelForm):
     text = forms.CharField(widget=forms.TextInput(attrs={'size': '30', 'style': 'height: 40px;'}))
+
     class Meta:
         model = Comment
         fields = "__all__"
         exclude = ['article', 'author', 'name']
 
-class CreateUser(UserCreationForm) :
+
+class CreateUser(UserCreationForm):
     captcha = CaptchaField()
-    username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={'class' : ' form-input' }))
+    username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={'class': ' form-input'}))
     password1 = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(attrs={'class': 'form-input'}),
@@ -38,6 +40,7 @@ class CreateUser(UserCreationForm) :
         label="Подтвердите пароль",
         widget=forms.PasswordInput(attrs={'class': 'form-input'}),
     )
-    class Meta :
+
+    class Meta:
         model = User
         fields = ['username', 'password1', 'password2']

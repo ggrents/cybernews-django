@@ -5,7 +5,7 @@
 
 
 <h1>
-CATEGORIES </h1>
+    CATEGORIES </h1>
 
 {%for cat in cats%}
 
@@ -18,14 +18,14 @@ CATEGORIES </h1>
 <br>
 <br>
 
-<div class = "arts_by_cat">
+<div class="arts_by_cat">
 
-{%for art in articles%}
+    {%for art in articles%}
 
 
-<h1> <a href="{{art.get_absolute_url}}"> {{art.title}} </a>  </h1>
+    <h1><a href="{{art.get_absolute_url}}"> {{art.title}} </a></h1>
 
-<img src="{{art.image.url}}" >
+    <img src="{{art.image.url}}">
 </div>
 
 <br>

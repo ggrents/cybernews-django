@@ -5,51 +5,51 @@
 
 
 {%block content%}
-    <div class="artic_det">
-        <h2>{{art.title}}</h2>
-        <div class="article-content">
-            <p>{{art.text}}</p>
-            <img src="{{art.image.url}}" id="det-img">
-        </div>
+<div class="artic_det">
+    <h2>{{art.title}}</h2>
+    <div class="article-content">
+        <p>{{art.text}}</p>
+        <img src="{{art.image.url}}" id="det-img">
     </div>
+</div>
 
 <div class="sim">
 
-<h2>ПОХОЖИЕ СТАТЬИ</h2>
+    <h2>ПОХОЖИЕ СТАТЬИ</h2>
 
-{%for art in similar%}
+    {%for art in similar%}
 
-<a href="{%url 'full-article' art.id%}"> {{art.title}}</a>
-<br>
+    <a href="{%url 'full-article' art.id%}"> {{art.title}}</a>
+    <br>
 
-{%endfor%}
+    {%endfor%}
 
-    </div>
+</div>
 
 
 <div class="comform">
-    <h2>      Оставьте комментарий</h2>
+    <h2> Оставьте комментарий</h2>
     <form method="POST">
         {% csrf_token %}
         <div class="aaa">
-        {% for field in form %}
-        <div>
-            Введите комментарий
-            <div class="inpcom" >{{field}}</div>
+            {% for field in form %}
+            <div>
+                Введите комментарий
+                <div class="inpcom">{{field}}</div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-        </div>
-        <input type="submit" value="Отправить" >
+        <input type="submit" value="Отправить">
     </form>
 
-{%for comm in comments%}
+    {%for comm in comments%}
 
-{{comm}}
-<br>
+    {{comm}}
+    <br>
 
-{%endfor%}
+    {%endfor%}
 
-    </div>
+</div>
 
 {%endblock%}
 

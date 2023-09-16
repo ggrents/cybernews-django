@@ -1,50 +1,43 @@
-
 {%extends "base.html" %}
 {% load static %}
 {% load news_tags %}
 
 
-
-
-
-
-
 {%block content%}
 <div class="cats">
-<h1>
-Категории </h1>
+    <h1>
+        Категории </h1>
 
-{%getcats as cats%}
-{%for cat in cats%}
+    {%getcats as cats%}
+    {%for cat in cats%}
 
-<a href="{%url 'category-only' cat.slug%}">{{cat}} </a>
-<br>
-{%endfor%}
+    <a href="{%url 'category-only' cat.slug%}">{{cat}} </a>
+    <br>
+    {%endfor%}
     <a href="{%url 'search' %}"> Поиск </a>
+</div>
+
+<br>
+<br>
+<br>
+
+
+<div class="recent">
+    {% for art in arts %}
+    <div class="recent-item">
+        <div class="cat"><h2>Категория - {{ art.category }} </h2></div>
+
+        <div class="tit"><h3><a href="{% url 'full-article' art.id %}">{{ art.title }}</a></h3></div>
+        <img src="{{ art.image.url }}">
+        <br>
+        <div class="tagg">
+            {% for tag in art.tags.all %}
+            <a href="{% url 'tag_search' tag.name %}" class="tag-link">{{ tag.name }} | </a>
+            {% endfor %}
+        </div>
     </div>
-
-<br>
-<br>
-<br>
-
-
-
-    <div class="recent">
-        {% for art in arts %}
-            <div class="recent-item">
-               <div class="cat">  <h2>Категория -  {{ art.category }} </h2> </div>
-
-            <div class="tit">    <h3><a href="{% url 'full-article' art.id %}">{{ art.title }}</a></h3> </div>
-                <img src="{{ art.image.url }}">
-                <br>
-                <div class="tagg">
-                {% for tag in art.tags.all %}
-                    <a href="{% url 'tag_search' tag.name %}" class="tag-link">{{ tag.name }} | </a>
-                {% endfor %}
-                    </div>
-            </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
+</div>
 
 
 {%include 'paginator.html' with page=page_obj%}

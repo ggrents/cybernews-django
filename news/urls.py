@@ -1,4 +1,3 @@
-
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -15,12 +14,5 @@ urlpatterns = [
     path('tagsearch/<str:tag>/', views.show_article_byTags, name='tag_search'),
     path('search/', views.Search.as_view(), name='search'),
     path('profile/', views.UserProfile.as_view(), name='profile'),
-
-
-
-
-
-
-
 
 ]

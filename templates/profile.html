@@ -1,33 +1,33 @@
 {%extends 'base.html'%}
 {%block content%}
 <div class="userinfo">
-<h1>Профиль пользователя</h1>
+    <h1>Профиль пользователя</h1>
 
-<h2>{{request.user.username}}</h2>
+    <h2>{{request.user.username}}</h2>
 </div>
 
 <div class="usArts">
-<h1>Статьи</h1>
-<h3>Количество статей - {{arts.count}}</h3>
+    <h1>Статьи</h1>
+    <h3>Количество статей - {{arts.count}}</h3>
 
-<ul>
-    {%for art in arts%}
-    <li><a href="{%url 'full-article' art.id%}"> {{art.title}} </a></li>
-    {%endfor%}
+    <ul>
+        {%for art in arts%}
+        <li><a href="{%url 'full-article' art.id%}"> {{art.title}} </a></li>
+        {%endfor%}
 
-</ul>
+    </ul>
 
 </div>
 
 <div class="usComs">
-<h1>Комментарии</h1>
-<h3>Количество комментариев - {{comms.count}}</h3>
+    <h1>Комментарии</h1>
+    <h3>Количество комментариев - {{comms.count}}</h3>
 
-<ul>
-    {%for comm in comms%}
-    <li><a href="{{ comm.get_absolute_url}}"> {{comm.text}} </a></li>
-    {%endfor%}
+    <ul>
+        {%for comm in comms%}
+        <li><a href="{{ comm.get_absolute_url}}"> {{comm.text}} </a></li>
+        {%endfor%}
 
-</ul>
+    </ul>
 </div>
 {%endblock%}

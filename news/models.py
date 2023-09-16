@@ -20,6 +20,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('category-only', args=[self.slug])
 
+
 class Article(models.Model):
     author = models.ForeignKey(User, related_name="author", on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
@@ -39,7 +40,7 @@ class Article(models.Model):
         return self.slug
 
     def get_absolute_url(self):
-        return reverse('full-article', args = [self.pk])
+        return reverse('full-article', args=[self.pk])
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -47,12 +48,13 @@ class Article(models.Model):
         super(Article, self).save(*args, **kwargs)
 
 
-class Comment(models.Model) :
+class Comment(models.Model):
     author = models.ForeignKey(User, related_name="commentator", on_delete=models.CASCADE, blank=True, null=True)
     article = models.ForeignKey(Article, related_name='article', on_delete=models.CASCADE)
     name = models.CharField(max_length=155)
     text = models.TextField(max_length=1000)
-    class Meta :
+
+    class Meta:
         verbose_name = "Комментарий"
         verbose_name_plural = "Комментарии"
 
