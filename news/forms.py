@@ -1,4 +1,4 @@
-from captcha.fields import CaptchaField
+from captcha.fields import CaptchaField, CaptchaTextInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
@@ -7,11 +7,13 @@ from .models import *
 
 
 class AddArticle(forms.ModelForm):
-    captcha = CaptchaField()
 
+    title = forms.CharField(label='Заголовок', max_length=100)
     class Meta:
         model = Article
         fields = ['title', 'tags', 'text', 'image', 'category']
+
+    captcha = CaptchaField(label='Введите капчу   ', )
 
 
 class SearchForm(forms.Form):
