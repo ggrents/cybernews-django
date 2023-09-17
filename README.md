@@ -39,9 +39,7 @@ Registration: Users can register a new account by choosing a unique username and
 
 Authorization: Users can log in to their account using their nickname and password. Authorization provides access to functions that are available only to registered users.
 
-Password Recovery: If the user has forgotten his password, he can request a password reset via email. The system will send him a link to create a new password.
-
-After registration and / or authorization, users can add articles, leave comments, search and enjoy all the functionality of our portal about esports.
+After registration and / or authorization, users can add articles, send comments, search and enjoy all the functionality of our portal about esports.
 
 Thus, the addition of a registration and authorization system provides users with more opportunities to interact with your project.
 
@@ -49,9 +47,9 @@ Thus, the addition of a registration and authorization system provides users wit
 
 Registered users have the opportunity to add their own articles on our portal. When adding an article, they can specify the title, content, select a category and assign tags to improve the search. This allows users to share information and opinions about esports.
 
-4. Leaving comments:
+4. Sending comments:
 
-Users can leave comments under each article of our portal. This allows you to create discussions and share opinions with other members of the esports community. Comments can be added after authorization on the site.
+Users can send comments under each article of our portal. This allows you to create discussions and share opinions with other members of the esports community. Comments can be added after authorization on the site.
 
 5. Search by words and tags:
 
